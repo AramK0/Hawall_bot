@@ -9,10 +9,9 @@ If you said yes it definetly would be nice then this project is the perfect solu
 
 # Product Impact:
 -This would reduce the pressure on college staff  
-
--The students get informed better
--Can use the chatbot as a general-information for the whole univerity'
--A modern technology for our top Uni
+-The students get informed better  
+-Can use the chatbot as a general-information for the whole univerity  
+-A modern technology for our top Uni  
 
 
 # Future Vision:
