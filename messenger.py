@@ -1,48 +1,78 @@
 from fastapi import FastAPI, Request
-import requests
+from fastapi.responses import PlainTextResponse, JSONResponse
+import logging
+import requests 
 
 app = FastAPI()
+logging.basicConfig(level=logging.INFO)
 
-VERIFY_TOKEN = "your_verify_token"  # Token to verify Facebook webhook
-PAGE_ACCESS_TOKEN = "your_page_access_token"  # Token for sending messages via Facebook
+# Facebook tokens
+VERIFY_TOKEN = "my_secret_token"  # Use the same one you put in Facebook Dev settings
+PAGE_ACCESS_TOKEN = "EAARNbuj5FZCkBO3UzTCo8puUhZCAZCYqqZBIiS3CFhgbsIV2bZCBGcfbex6E96UxasA9cofYvDA5OIii8q8JuHzZCdDE9ejnZBqZCDGLZCo3fLnsOk5huTwxmvRINnbFfE8NTZCAwablQnbDNW8HnjX6jtALgqGCsG1ZAmH8UhAdwEqaWZAwwB0XL2a0UG5d3tCPPoxfyJrxgsFTUv4xe3APMhCZBEMJfDgZDZD"  # Replace with your Page token
 
+# ✅ GET /webhook - Used by Facebook to verify the webhook
 @app.get("/webhook")
-async def verify_webhook(request: Request, hub_mode: str = None, hub_challenge: str = None, hub_verify_token: str = None):
-    """
-    Facebook requires a GET request to verify the webhook URL during setup.
-    If the tokens match, the webhook is successfully verified.
-    """
-    if hub_verify_token == VERIFY_TOKEN:
-        return hub_challenge  # Facebook will match the challenge and verify the webhook.
-    return "Verification failed", 403
+async def verify_webhook(request: Request):
+    params = dict(request.query_params)
+    mode = params.get("hub.mode")
+    token = params.get("hub.verify_token")
+    challenge = params.get("hub.challenge")
 
+    if mode == "subscribe" and token == VERIFY_TOKEN:
+        logging.info("✅ Webhook verified by Facebook.")
+        return PlainTextResponse(content=challenge, status_code=200)
+    else:
+        logging.warning("❌ Webhook verification failed.")
+        return PlainTextResponse(content="Verification failed", status_code=403)
+
+
+# ✅ POST /webhook - Facebook sends messages here
 @app.post("/webhook")
-async def receive_message(request: Request):
-    """
-    This POST endpoint will be called by Facebook Messenger whenever a new event occurs.
-    This includes messages, button clicks, etc.
-    """
-    data = await request.json()
-    # Loop through the events (messages or other events) sent by Facebook
-    for entry in data["entry"]:
-        for message in entry["messaging"]:
-            sender_id = message["sender"]["id"]
-            if "message" in message:
-                text = message["message"]["text"]
-                send_message(sender_id, text)  # Respond back with the same message (for now)
+async def handle_incoming_webhook(request: Request):
+    try:
+        payload = await request.json()
+        logging.info("📥 Received webhook payload: %s", payload)
 
-    return "OK"
+        if payload.get("object") == "page":
+            for entry in payload.get("entry", []):
+                for messaging_event in entry.get("messaging", []):
+                    sender_id = messaging_event["sender"]["id"]
+                    message_text = messaging_event.get("message", {}).get("text", "").strip().lower()
 
-def send_message(recipient_id, text):
-    """Function to send a reply to the user on Facebook Messenger"""
-    url = f"https://graph.facebook.com/v12.0/me/messages?access_token={PAGE_ACCESS_TOKEN}"
+                    if message_text:
+                        logging.info(f"📩 Message from {sender_id}: {message_text}")
+
+                        # 💬 Respond based on message text
+                        if message_text == "hello":
+                            send_message(sender_id, "Hey there! 👋")
+                        elif message_text == "/help":
+                            send_message(sender_id, "Here to help! Try typing 'hello' or '/help'.")
+                        else:
+                            send_message(sender_id, "I didn’t understand that. Try typing '/help'.")
+
+        return JSONResponse(content={"status": "ok"}, status_code=200)
+
+    except Exception as e:
+        logging.error(f"❌ Error handling webhook: {e}")
+        return JSONResponse(content={"error": "Something went wrong"}, status_code=500)
+
+
+# 📤 Function to send a message using Facebook Graph API
+def send_message(recipient_id: str, message: str):
+    url = "https://graph.facebook.com/v17.0/me/messages"
+    params = {
+        "access_token": PAGE_ACCESS_TOKEN
+    }
+    data = {
+        "recipient": {"id": recipient_id},
+        "message": {"text": message}
+    }
     headers = {
         "Content-Type": "application/json"
     }
-    payload = {
-        "recipient": {"id": recipient_id},
-        "message": {"text": text}
-    }
-    response = requests.post(url, json=payload, headers=headers)
-    print(response.status_code, response.text)
 
+    response = requests.post(url, params=params, json=data, headers=headers)
+    if response.status_code != 200:
+        logging.error(f"❌ Failed to send message: {response.text}")
+    else:
+        logging.info(f"✅ Sent message to {recipient_id}: {message}")
