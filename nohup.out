@@ -1,0 +1,63 @@
+ERROR:    Error loading ASGI app. Attribute "app" not found in module "app".
+ERROR:    Error loading ASGI app. Attribute "app" not found in module "app".
+INFO:     Started server process [26607]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     62.201.214.234:0 - "GET / HTTP/1.0" 200 OK
+INFO:     62.201.214.234:0 - "GET /favicon.ico HTTP/1.0" 404 Not Found
+INFO:     62.201.214.234:0 - "GET / HTTP/1.0" 200 OK
+INFO:     62.201.214.234:0 - "GET / HTTP/1.0" 200 OK
+INFO:     62.201.214.234:0 - "GET / HTTP/1.0" 200 OK
+INFO:     Started server process [26613]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 98] error while attempting to bind on address ('0.0.0.0', 8000): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     62.201.214.234:0 - "GET / HTTP/1.0" 200 OK
+INFO:     62.201.214.234:0 - "GET / HTTP/1.0" 200 OK
+INFO:     Started server process [26617]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 98] error while attempting to bind on address ('0.0.0.0', 8000): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     62.201.214.234:0 - "GET / HTTP/1.0" 200 OK
+INFO:     Started server process [26630]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [26630]
+INFO:     Started server process [26638]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     62.201.214.234:0 - "GET / HTTP/1.0" 200 OK
+INFO:     62.201.214.234:0 - "GET /favicon.ico HTTP/1.0" 404 Not Found
+INFO:     62.201.214.234:0 - "GET /apple-touch-icon-precomposed.png HTTP/1.0" 404 Not Found
+INFO:     62.201.214.234:0 - "GET /favicon.ico HTTP/1.0" 404 Not Found
+INFO:     62.201.214.234:0 - "GET /apple-touch-icon.png HTTP/1.0" 404 Not Found
+INFO:     173.252.83.115:0 - "GET / HTTP/1.0" 200 OK
+INFO:     62.201.214.234:0 - "GET /?fbclid=IwY2xjawJrNwpleHRuA2FlbQIxMQABHreDnttmm0vU1jgV5gBITYQCDxmUV8tQaAp6Tft4bL7oy6e2U72K8EcNbPGd_aem_hJEfne_nsaQptBU6y1Amkg HTTP/1.0" 200 OK
+INFO:     62.201.214.234:0 - "GET /?fbclid=IwY2xjawJrN1RleHRuA2FlbQIxMQABHreDnttmm0vU1jgV5gBITYQCDxmUV8tQaAp6Tft4bL7oy6e2U72K8EcNbPGd_aem_hJEfne_nsaQptBU6y1Amkg HTTP/1.0" 200 OK
+INFO:     62.201.214.234:0 - "GET /?fbclid=IwY2xjawJrN7pleHRuA2FlbQIxMQABHreDnttmm0vU1jgV5gBITYQCDxmUV8tQaAp6Tft4bL7oy6e2U72K8EcNbPGd_aem_hJEfne_nsaQptBU6y1Amkg HTTP/1.0" 200 OK
+INFO:     185.56.194.146:0 - "GET /?fbclid=IwZXh0bgNhZW0CMTEAAR7qvF4Qg6otMkXXihbYmoUmrab8MgxfgDrLN6mZo-PvJMtIbVVSl4u5eKjcgQ_aem_noBcWrUiZMCnGQDSkIJ27A HTTP/1.0" 200 OK
+INFO:     185.56.194.146:0 - "GET /?fbclid=IwZXh0bgNhZW0CMTEAAR7qvF4Qg6otMkXXihbYmoUmrab8MgxfgDrLN6mZo-PvJMtIbVVSl4u5eKjcgQ_aem_noBcWrUiZMCnGQDSkIJ27A HTTP/1.0" 200 OK
+INFO:     62.201.214.234:0 - "GET /?fbclid=IwY2xjawJrOgdleHRuA2FlbQIxMQABHreDnttmm0vU1jgV5gBITYQCDxmUV8tQaAp6Tft4bL7oy6e2U72K8EcNbPGd_aem_hJEfne_nsaQptBU6y1Amkg HTTP/1.0" 200 OK
+INFO:     176.222.62.208:0 - "GET /?fbclid=IwZXh0bgNhZW0CMTEAAR4SDvGbEqYqE830KsGe2HsQ3rb31UMhJubJSBIYA8msXkzJM23xr4ppQfRiwA_aem_-6xRG9kCj2QOn8MGqWe47A HTTP/1.0" 200 OK
+INFO:     176.222.62.208:0 - "GET /?fbclid=IwZXh0bgNhZW0CMTEAAR4SDvGbEqYqE830KsGe2HsQ3rb31UMhJubJSBIYA8msXkzJM23xr4ppQfRiwA_aem_-6xRG9kCj2QOn8MGqWe47A HTTP/1.0" 200 OK
+INFO:     176.222.62.208:0 - "GET /favicon.ico HTTP/1.0" 404 Not Found
+INFO:     64.15.129.103:0 - "GET / HTTP/1.0" 200 OK
+INFO:     64.15.129.116:0 - "GET / HTTP/1.0" 200 OK
+INFO:     192.175.111.248:0 - "GET /favicon.ico HTTP/1.0" 404 Not Found
+INFO:     192.175.111.228:0 - "GET / HTTP/1.0" 200 OK
+INFO:     192.175.111.249:0 - "GET / HTTP/1.0" 200 OK
+INFO:     192.175.111.240:0 - "GET / HTTP/1.0" 200 OK
+INFO:     192.175.111.251:0 - "GET / HTTP/1.0" 200 OK
+INFO:     64.15.129.112:0 - "GET /favicon.ico HTTP/1.0" 404 Not Found
+INFO:     64.15.129.100:0 - "GET / HTTP/1.0" 200 OK
+INFO:     192.175.111.233:0 - "GET / HTTP/1.0" 200 OK
